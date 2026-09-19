@@ -4,32 +4,77 @@
    ========================================================= */
 
 
-/* =========================
-   1. DOM ELEMENTS
-   ========================= */
+/* =========================================================
+   01. DOM ELEMENTS
+   ========================================================= */
 
-const riskForm = document.getElementById("riskForm");
+/* Main form */
 
-const editingRiskId = document.getElementById("editingRiskId");
+const riskForm =
+    document.getElementById("riskForm");
 
-const asset = document.getElementById("asset");
-const category = document.getElementById("category");
-const threat = document.getElementById("threat");
-const vulnerability = document.getElementById("vulnerability");
-const description = document.getElementById("description");
+const editingRiskId =
+    document.getElementById("editingRiskId");
 
-const confidentiality = document.getElementById("confidentiality");
-const integrity = document.getElementById("integrity");
-const availability = document.getElementById("availability");
 
-const likelihood = document.getElementById("likelihood");
-const impact = document.getElementById("impact");
+/* Risk identification */
 
-const treatment = document.getElementById("treatment");
-const status = document.getElementById("status");
-const owner = document.getElementById("owner");
-const deadline = document.getElementById("deadline");
-const controls = document.getElementById("controls");
+const asset =
+    document.getElementById("asset");
+
+const category =
+    document.getElementById("category");
+
+const threat =
+    document.getElementById("threat");
+
+const vulnerability =
+    document.getElementById("vulnerability");
+
+const description =
+    document.getElementById("description");
+
+
+/* CIA impact */
+
+const confidentiality =
+    document.getElementById("confidentiality");
+
+const integrity =
+    document.getElementById("integrity");
+
+const availability =
+    document.getElementById("availability");
+
+
+/* Inherent risk */
+
+const likelihood =
+    document.getElementById("likelihood");
+
+const impact =
+    document.getElementById("impact");
+
+
+/* Risk treatment */
+
+const treatment =
+    document.getElementById("treatment");
+
+const status =
+    document.getElementById("status");
+
+const owner =
+    document.getElementById("owner");
+
+const deadline =
+    document.getElementById("deadline");
+
+const controls =
+    document.getElementById("controls");
+
+
+/* Residual risk */
 
 const residualLikelihood =
     document.getElementById("residualLikelihood");
@@ -37,10 +82,18 @@ const residualLikelihood =
 const residualImpact =
     document.getElementById("residualImpact");
 
-const notes = document.getElementById("notes");
+
+/* Notes */
+
+const notes =
+    document.getElementById("notes");
 
 
-/* Risk calculation */
+/* =========================================================
+   02. RISK CALCULATION ELEMENTS
+   ========================================================= */
+
+/* Inherent risk result */
 
 const inherentRiskScore =
     document.getElementById("inherentRiskScore");
@@ -50,6 +103,9 @@ const inherentRiskLevel =
 
 const inherentRiskResult =
     document.getElementById("inherentRiskResult");
+
+
+/* Residual risk result */
 
 const residualRiskScore =
     document.getElementById("residualRiskScore");
@@ -61,7 +117,9 @@ const residualRiskResult =
     document.getElementById("residualRiskResult");
 
 
-/* Risk register */
+/* =========================================================
+   03. RISK REGISTER ELEMENTS
+   ========================================================= */
 
 const riskTableBody =
     document.getElementById("riskTableBody");
@@ -82,7 +140,9 @@ const exportRisks =
     document.getElementById("exportRisks");
 
 
-/* Dashboard */
+/* =========================================================
+   04. DASHBOARD ELEMENTS
+   ========================================================= */
 
 const totalRisks =
     document.getElementById("totalRisks");
@@ -97,7 +157,9 @@ const mitigatedRisks =
     document.getElementById("mitigatedRisks");
 
 
-/* Edit */
+/* =========================================================
+   05. EDIT FORM ELEMENTS
+   ========================================================= */
 
 const formTitle =
     document.getElementById("formTitle");
@@ -112,39 +174,58 @@ const resetRiskButton =
     document.getElementById("resetRisk");
 
 
-/* =========================
-   2. LOCAL STORAGE
-   ========================= */
+/* =========================================================
+   06. LOCAL STORAGE
+   ========================================================= */
 
-const STORAGE_KEY = "securityRiskRegister";
+/*
+    Risks are stored locally in the user's browser.
 
-let risks = loadRisks();
+    This allows the application to keep saved risks
+    even after the browser has been closed or refreshed.
+*/
 
+const STORAGE_KEY =
+    "securityRiskRegister";
+
+let risks =
+    loadRisks();
+
+
+/*
+    Load saved risks from LocalStorage.
+*/
 
 function loadRisks() {
 
     const savedRisks =
         localStorage.getItem(STORAGE_KEY);
 
+
+    /* No saved risks */
+
     if (!savedRisks) {
         return [];
     }
+
 
     try {
 
         const parsedRisks =
             JSON.parse(savedRisks);
 
+
         if (Array.isArray(parsedRisks)) {
             return parsedRisks;
         }
+
 
         return [];
 
     } catch (error) {
 
         console.error(
-            "Kunde inte läsa riskregistret:",
+            "Could not read the risk register:",
             error
         );
 
@@ -152,6 +233,10 @@ function loadRisks() {
     }
 }
 
+
+/*
+    Save the current risk register to LocalStorage.
+*/
 
 function saveRisks() {
 
@@ -162,17 +247,19 @@ function saveRisks() {
 }
 
 
-/* =========================
-   3. RISK LEVEL
-   ========================= */
+/* =========================================================
+   07. RISK LEVEL
+   ========================================================= */
 
 /*
-    Risk = sannolikhet × konsekvens
+    Risk score calculation:
 
-    1–4   = Låg
-    5–10  = Medel
-    11–16 = Hög
-    17–25 = Kritisk
+    Risk = Likelihood × Impact
+
+    1–4   = Low
+    5–10  = Medium
+    11–16 = High
+    17–25 = Critical
 */
 
 function getRiskLevel(score) {
@@ -180,37 +267,47 @@ function getRiskLevel(score) {
     if (score <= 4) {
 
         return {
-            name: "LÅG",
+            name: "LOW",
             className: "low"
         };
     }
 
+
     if (score <= 10) {
 
         return {
-            name: "MEDEL",
+            name: "MEDIUM",
             className: "medium"
         };
     }
 
+
     if (score <= 16) {
 
         return {
-            name: "HÖG",
+            name: "HIGH",
             className: "high"
         };
     }
 
+
     return {
-        name: "KRITISK",
+        name: "CRITICAL",
         className: "critical"
     };
 }
 
 
-/* =========================
-   4. CALCULATE RISK
-   ========================= */
+/* =========================================================
+   08. CALCULATE RISK SCORE
+   ========================================================= */
+
+/*
+    Multiply likelihood by impact.
+
+    Both values are converted to numbers before
+    the calculation is performed.
+*/
 
 function calculateRisk(
     likelihoodValue,
@@ -224,19 +321,28 @@ function calculateRisk(
 }
 
 
-/* =========================
-   5. UPDATE LIVE CALCULATION
-   ========================= */
+/* =========================================================
+   09. UPDATE LIVE RISK CALCULATIONS
+   ========================================================= */
+
+/*
+    Update both inherent risk and residual risk
+    whenever the user changes the values.
+*/
 
 function updateRiskCalculations() {
 
-    /* Inherent risk */
+
+    /* -----------------------------------------------------
+       Inherent risk
+       ----------------------------------------------------- */
 
     const inherentScore =
         calculateRisk(
             likelihood.value,
             impact.value
         );
+
 
     const inherentLevel =
         getRiskLevel(inherentScore);
@@ -245,21 +351,27 @@ function updateRiskCalculations() {
     inherentRiskScore.textContent =
         inherentScore;
 
+
     inherentRiskLevel.textContent =
         inherentLevel.name;
+
 
     inherentRiskResult.className =
         "risk-result " +
         inherentLevel.className;
 
 
-    /* Residual risk */
+
+    /* -----------------------------------------------------
+       Residual risk
+       ----------------------------------------------------- */
 
     const residualScore =
         calculateRisk(
             residualLikelihood.value,
             residualImpact.value
         );
+
 
     const residualLevel =
         getRiskLevel(residualScore);
@@ -268,8 +380,10 @@ function updateRiskCalculations() {
     residualRiskScore.textContent =
         residualScore;
 
+
     residualRiskLevel.textContent =
         residualLevel.name;
+
 
     residualRiskResult.className =
         "risk-result " +
@@ -277,24 +391,31 @@ function updateRiskCalculations() {
 }
 
 
-/* =========================
-   6. RISK CALCULATION EVENTS
-   ========================= */
+/* =========================================================
+   10. RISK CALCULATION EVENTS
+   ========================================================= */
+
+/*
+    Recalculate the risk when any risk value changes.
+*/
 
 likelihood.addEventListener(
     "change",
     updateRiskCalculations
 );
 
+
 impact.addEventListener(
     "change",
     updateRiskCalculations
 );
 
+
 residualLikelihood.addEventListener(
     "change",
     updateRiskCalculations
 );
+
 
 residualImpact.addEventListener(
     "change",
@@ -302,29 +423,45 @@ residualImpact.addEventListener(
 );
 
 
-/* =========================
-   7. GENERATE RISK ID
-   ========================= */
+/* =========================================================
+   11. GENERATE RISK ID
+   ========================================================= */
+
+/*
+    Generate sequential risk IDs.
+
+    Example:
+
+    R-001
+    R-002
+    R-003
+*/
 
 function generateRiskId() {
 
     let highestNumber = 0;
 
-    risks.forEach(function (risk) {
 
-        const number =
-            Number(
-                String(risk.id)
-                    .replace("R-", "")
-            );
+    risks.forEach(
+        function (risk) {
 
-        if (
-            Number.isFinite(number) &&
-            number > highestNumber
-        ) {
-            highestNumber = number;
+            const number =
+                Number(
+                    String(risk.id)
+                        .replace("R-", "")
+                );
+
+
+            if (
+                Number.isFinite(number) &&
+                number > highestNumber
+            ) {
+
+                highestNumber =
+                    number;
+            }
         }
-    });
+    );
 
 
     const nextNumber =
@@ -333,16 +470,25 @@ function generateRiskId() {
 
     return (
         "R-" +
-        String(nextNumber).padStart(3, "0")
+        String(nextNumber)
+            .padStart(3, "0")
     );
 }
 
 
-/* =========================
-   8. CREATE RISK OBJECT
-   ========================= */
+/* =========================================================
+   12. CREATE RISK OBJECT
+   ========================================================= */
+
+/*
+    Create a JavaScript object containing all
+    information entered in the risk assessment form.
+*/
 
 function createRiskObject(id) {
+
+
+    /* Calculate inherent risk */
 
     const inherentScore =
         calculateRisk(
@@ -350,9 +496,13 @@ function createRiskObject(id) {
             impact.value
         );
 
+
     const inherentLevel =
         getRiskLevel(inherentScore);
 
+
+
+    /* Calculate residual risk */
 
     const residualScore =
         calculateRisk(
@@ -360,19 +510,26 @@ function createRiskObject(id) {
             residualImpact.value
         );
 
+
     const residualLevel =
         getRiskLevel(residualScore);
 
+
+
+    /* Create risk object */
 
     return {
 
         id: id,
 
-        asset: asset.value.trim(),
+        asset:
+            asset.value.trim(),
 
-        category: category.value,
+        category:
+            category.value,
 
-        threat: threat.value.trim(),
+        threat:
+            threat.value.trim(),
 
         vulnerability:
             vulnerability.value.trim(),
@@ -447,9 +604,19 @@ function createRiskObject(id) {
 }
 
 
-/* =========================
-   9. FORM SUBMIT
-   ========================= */
+/* =========================================================
+   13. FORM SUBMISSION
+   ========================================================= */
+
+/*
+    When the form is submitted:
+
+    1. Prevent normal page reload.
+    2. Check whether a risk is being edited.
+    3. Create or update the risk.
+    4. Save the risk register.
+    5. Render the updated table.
+*/
 
 riskForm.addEventListener(
     "submit",
@@ -462,7 +629,10 @@ riskForm.addEventListener(
             editingRiskId.value;
 
 
-        /* EDIT EXISTING RISK */
+
+        /* -------------------------------------------------
+           Edit existing risk
+           ------------------------------------------------- */
 
         if (currentEditingId) {
 
@@ -500,7 +670,10 @@ riskForm.addEventListener(
 
         } else {
 
-            /* CREATE NEW RISK */
+
+            /* -------------------------------------------------
+               Create new risk
+               ------------------------------------------------- */
 
             const newRisk =
                 createRiskObject(
@@ -516,12 +689,23 @@ riskForm.addEventListener(
         }
 
 
+
+        /* Save changes */
+
         saveRisks();
+
+
+        /* Update interface */
 
         renderRisks();
 
+
+        /* Reset form */
+
         resetForm();
 
+
+        /* Scroll to risk register */
 
         document
             .getElementById("risk-register")
@@ -532,31 +716,47 @@ riskForm.addEventListener(
 );
 
 
-/* =========================
-   10. RESET FORM
-   ========================= */
+/* =========================================================
+   14. RESET FORM
+   ========================================================= */
+
+/*
+    Reset the form to its default state.
+*/
 
 function resetForm() {
 
     riskForm.reset();
 
-    editingRiskId.value = "";
+
+    editingRiskId.value =
+        "";
+
 
     formTitle.textContent =
-        "Ny riskbedömning";
+        "New Risk Assessment";
+
 
     saveRiskButton.textContent =
-        "Spara risk →";
+        "Save Risk →";
 
-    cancelEditButton.hidden = true;
+
+    cancelEditButton.hidden =
+        true;
+
 
     updateRiskCalculations();
 }
 
 
-/* =========================
-   11. RESET BUTTON
-   ========================= */
+/* =========================================================
+   15. RESET BUTTON
+   ========================================================= */
+
+/*
+    Wait until the browser has reset the form,
+    then recalculate the default risk values.
+*/
 
 resetRiskButton.addEventListener(
     "click",
@@ -570,9 +770,9 @@ resetRiskButton.addEventListener(
 );
 
 
-/* =========================
-   12. CANCEL EDIT
-   ========================= */
+/* =========================================================
+   16. CANCEL EDITING
+   ========================================================= */
 
 cancelEditButton.addEventListener(
     "click",
@@ -583,9 +783,14 @@ cancelEditButton.addEventListener(
 );
 
 
-/* =========================
-   13. EDIT RISK
-   ========================= */
+/* =========================================================
+   17. EDIT RISK
+   ========================================================= */
+
+/*
+    Load an existing risk into the form
+    so the user can edit it.
+*/
 
 function editRisk(id) {
 
@@ -603,9 +808,15 @@ function editRisk(id) {
     }
 
 
+
+    /* Store the ID currently being edited */
+
     editingRiskId.value =
         risk.id;
 
+
+
+    /* Load identification data */
 
     asset.value =
         risk.asset;
@@ -622,6 +833,10 @@ function editRisk(id) {
     description.value =
         risk.description;
 
+
+
+    /* Load CIA values */
+
     confidentiality.value =
         risk.confidentiality;
 
@@ -631,11 +846,19 @@ function editRisk(id) {
     availability.value =
         risk.availability;
 
+
+
+    /* Load inherent risk values */
+
     likelihood.value =
         risk.likelihood;
 
     impact.value =
         risk.impact;
+
+
+
+    /* Load treatment data */
 
     treatment.value =
         risk.treatment;
@@ -652,28 +875,47 @@ function editRisk(id) {
     controls.value =
         risk.controls;
 
+
+
+    /* Load residual risk values */
+
     residualLikelihood.value =
         risk.residualLikelihood;
 
     residualImpact.value =
         risk.residualImpact;
 
+
+
+    /* Load notes */
+
     notes.value =
         risk.notes || "";
 
 
+
+    /* Change form interface */
+
     formTitle.textContent =
-        "Redigera " + risk.id;
+        "Edit " + risk.id;
+
 
     saveRiskButton.textContent =
-        "Spara ändringar →";
+        "Save Changes →";
+
 
     cancelEditButton.hidden =
         false;
 
 
+
+    /* Update calculations */
+
     updateRiskCalculations();
 
+
+
+    /* Scroll to form */
 
     document
         .getElementById("new-risk")
@@ -683,9 +925,13 @@ function editRisk(id) {
 }
 
 
-/* =========================
-   14. DELETE RISK
-   ========================= */
+/* =========================================================
+   18. DELETE RISK
+   ========================================================= */
+
+/*
+    Delete a risk after user confirmation.
+*/
 
 function deleteRisk(id) {
 
@@ -705,7 +951,7 @@ function deleteRisk(id) {
 
     const confirmed =
         window.confirm(
-            "Vill du ta bort " +
+            "Are you sure you want to delete " +
             risk.id +
             " – " +
             risk.asset +
@@ -718,6 +964,9 @@ function deleteRisk(id) {
     }
 
 
+
+    /* Remove risk */
+
     risks =
         risks.filter(
             function (item) {
@@ -727,38 +976,60 @@ function deleteRisk(id) {
         );
 
 
+
+    /* Save updated register */
+
     saveRisks();
+
+
+
+    /* Update interface */
 
     renderRisks();
 
 
+
+    /* Reset form if deleted risk was being edited */
+
     if (
         editingRiskId.value === id
     ) {
+
         resetForm();
     }
 }
 
 
-/* =========================
-   15. CREATE TABLE CELL
-   ========================= */
+/* =========================================================
+   19. CREATE TABLE CELL
+   ========================================================= */
+
+/*
+    Create a standard table cell.
+*/
 
 function createCell(text) {
 
     const cell =
         document.createElement("td");
 
+
     cell.textContent =
         text;
+
 
     return cell;
 }
 
 
-/* =========================
-   16. CREATE RISK BADGE
-   ========================= */
+/* =========================================================
+   20. CREATE RISK BADGE
+   ========================================================= */
+
+/*
+    Create a colored badge representing
+    the current risk level.
+*/
 
 function createRiskBadge(
     level,
@@ -782,9 +1053,13 @@ function createRiskBadge(
 }
 
 
-/* =========================
-   17. CREATE TABLE ROW
-   ========================= */
+/* =========================================================
+   21. CREATE RISK TABLE ROW
+   ========================================================= */
+
+/*
+    Create one table row for a risk.
+*/
 
 function createRiskRow(risk) {
 
@@ -792,11 +1067,13 @@ function createRiskRow(risk) {
         document.createElement("tr");
 
 
-    /* ID */
+
+    /* Risk ID */
 
     row.appendChild(
         createCell(risk.id)
     );
+
 
 
     /* Asset */
@@ -806,6 +1083,7 @@ function createRiskRow(risk) {
     );
 
 
+
     /* Threat */
 
     row.appendChild(
@@ -813,13 +1091,15 @@ function createRiskRow(risk) {
     );
 
 
-    /* Risk score */
+
+    /* Inherent risk score */
 
     row.appendChild(
         createCell(
             risk.score + "/25"
         )
     );
+
 
 
     /* Risk level */
@@ -836,10 +1116,13 @@ function createRiskRow(risk) {
     );
 
 
-    row.appendChild(levelCell);
+    row.appendChild(
+        levelCell
+    );
 
 
-    /* Owner */
+
+    /* Risk owner */
 
     row.appendChild(
         createCell(
@@ -848,11 +1131,17 @@ function createRiskRow(risk) {
     );
 
 
+
     /* Status */
 
     row.appendChild(
-        createCell(risk.status)
+        createCell(
+            getEnglishStatus(
+                risk.status
+            )
+        )
     );
+
 
 
     /* Residual risk */
@@ -884,7 +1173,10 @@ function createRiskRow(risk) {
     );
 
 
-    /* Actions */
+
+    /* -----------------------------------------------------
+       Action buttons
+       ----------------------------------------------------- */
 
     const actionCell =
         document.createElement("td");
@@ -898,6 +1190,7 @@ function createRiskRow(risk) {
         "table-actions";
 
 
+
     /* Edit button */
 
     const editButton =
@@ -907,11 +1200,13 @@ function createRiskRow(risk) {
     editButton.type =
         "button";
 
+
     editButton.className =
         "table-action";
 
+
     editButton.textContent =
-        "Redigera";
+        "Edit";
 
 
     editButton.addEventListener(
@@ -923,6 +1218,7 @@ function createRiskRow(risk) {
     );
 
 
+
     /* Delete button */
 
     const deleteButton =
@@ -932,11 +1228,13 @@ function createRiskRow(risk) {
     deleteButton.type =
         "button";
 
+
     deleteButton.className =
         "table-action delete";
 
+
     deleteButton.textContent =
-        "Ta bort";
+        "Delete";
 
 
     deleteButton.addEventListener(
@@ -948,17 +1246,23 @@ function createRiskRow(risk) {
     );
 
 
+
+    /* Add buttons */
+
     actionContainer.appendChild(
         editButton
     );
+
 
     actionContainer.appendChild(
         deleteButton
     );
 
+
     actionCell.appendChild(
         actionContainer
     );
+
 
     row.appendChild(
         actionCell
@@ -969,9 +1273,53 @@ function createRiskRow(risk) {
 }
 
 
-/* =========================
-   18. FILTER RISKS
-   ========================= */
+/* =========================================================
+   22. STATUS TRANSLATION
+   ========================================================= */
+
+/*
+    Older risks may still contain Swedish status values
+    because they were created before the interface was
+    translated to English.
+
+    This function allows those risks to continue working.
+*/
+
+function getEnglishStatus(riskStatus) {
+
+    const statusTranslations = {
+
+        "Öppen":
+            "Open",
+
+        "Under åtgärd":
+            "In Progress",
+
+        "Hanterad":
+            "Mitigated",
+
+        "Accepterad":
+            "Accepted"
+    };
+
+
+    return (
+        statusTranslations[riskStatus] ||
+        riskStatus
+    );
+}
+
+
+/* =========================================================
+   23. FILTER RISKS
+   ========================================================= */
+
+/*
+    Filter risks using:
+
+    1. Selected risk level.
+    2. Search field.
+*/
 
 function getFilteredRisks() {
 
@@ -988,7 +1336,8 @@ function getFilteredRisks() {
     return risks.filter(
         function (risk) {
 
-            /* Risk level */
+
+            /* Risk level filter */
 
             const matchesLevel =
                 selectedLevel === "all" ||
@@ -996,9 +1345,11 @@ function getFilteredRisks() {
                     selectedLevel;
 
 
-            /* Search */
+
+            /* Create searchable text */
 
             const searchableText = [
+
                 risk.id,
                 risk.asset,
                 risk.category,
@@ -1007,13 +1358,18 @@ function getFilteredRisks() {
                 risk.description,
                 risk.owner,
                 risk.status,
+                getEnglishStatus(risk.status),
                 risk.treatment,
                 risk.controls,
                 risk.notes
+
             ]
                 .join(" ")
                 .toLowerCase();
 
+
+
+            /* Search match */
 
             const matchesSearch =
                 searchableText.includes(
@@ -1030,9 +1386,18 @@ function getFilteredRisks() {
 }
 
 
-/* =========================
-   19. RENDER RISKS
-   ========================= */
+/* =========================================================
+   24. RENDER RISKS
+   ========================================================= */
+
+/*
+    Render the risk register table.
+
+    The empty state is displayed when:
+
+    - No risks have been created.
+    - The current filter returns no results.
+*/
 
 function renderRisks() {
 
@@ -1043,58 +1408,85 @@ function renderRisks() {
         getFilteredRisks();
 
 
-    /* No risks at all */
+
+    /* -----------------------------------------------------
+       No risks exist
+       ----------------------------------------------------- */
 
     if (risks.length === 0) {
 
-        tableWrapper.hidden = true;
+        tableWrapper.hidden =
+            true;
 
-        emptyState.hidden = false;
 
-        emptyState.querySelector("h3")
+        emptyState.hidden =
+            false;
+
+
+        emptyState
+            .querySelector("h3")
             .textContent =
-            "Inga risker registrerade";
+            "No Risks Registered";
 
-        emptyState.querySelector("p")
+
+        emptyState
+            .querySelector("p")
             .textContent =
-            "Skapa din första riskbedömning för att börja bygga riskregistret.";
+            "Create your first risk assessment to start building the risk register.";
 
     } else {
 
-        tableWrapper.hidden = false;
+        tableWrapper.hidden =
+            false;
 
-        emptyState.hidden = true;
+
+        emptyState.hidden =
+            true;
     }
 
 
-    /* Risks exist but filter returned zero */
+
+    /* -----------------------------------------------------
+       Risks exist but no filter results were found
+       ----------------------------------------------------- */
 
     if (
         risks.length > 0 &&
         filteredRisks.length === 0
     ) {
 
-        tableWrapper.hidden = true;
+        tableWrapper.hidden =
+            true;
 
-        emptyState.hidden = false;
 
-        emptyState.querySelector("h3")
+        emptyState.hidden =
+            false;
+
+
+        emptyState
+            .querySelector("h3")
             .textContent =
-            "Inga matchande risker";
+            "No Matching Risks";
 
-        emptyState.querySelector("p")
+
+        emptyState
+            .querySelector("p")
             .textContent =
-            "Ändra sökningen eller filtret för att visa andra risker.";
+            "Change the search query or filter to display other risks.";
     }
 
 
-    /* Render */
+
+    /* -----------------------------------------------------
+       Render risk rows
+       ----------------------------------------------------- */
 
     filteredRisks.forEach(
         function (risk) {
 
             const row =
                 createRiskRow(risk);
+
 
             riskTableBody.appendChild(
                 row
@@ -1103,23 +1495,36 @@ function renderRisks() {
     );
 
 
+
+    /* Update dashboard */
+
     updateDashboard();
 }
 
 
-/* =========================
-   20. DASHBOARD
-   ========================= */
+/* =========================================================
+   25. UPDATE DASHBOARD
+   ========================================================= */
+
+/*
+    Update dashboard statistics.
+*/
 
 function updateDashboard() {
 
-    /* Total */
+
+    /* -----------------------------------------------------
+       Total number of risks
+       ----------------------------------------------------- */
 
     totalRisks.textContent =
         risks.length;
 
 
-    /* High + critical */
+
+    /* -----------------------------------------------------
+       High and critical risks
+       ----------------------------------------------------- */
 
     const highRiskCount =
         risks.filter(
@@ -1139,7 +1544,12 @@ function updateDashboard() {
         highRiskCount;
 
 
-    /* Under treatment */
+
+    /* -----------------------------------------------------
+       Risks currently being treated
+
+       Both English and old Swedish values are accepted.
+       ----------------------------------------------------- */
 
     const activeRiskCount =
         risks.filter(
@@ -1147,7 +1557,10 @@ function updateDashboard() {
 
                 return (
                     risk.status ===
-                    "Under åtgärd"
+                        "In Progress" ||
+
+                    risk.status ===
+                        "Under åtgärd"
                 );
             }
         ).length;
@@ -1157,7 +1570,12 @@ function updateDashboard() {
         activeRiskCount;
 
 
-    /* Managed */
+
+    /* -----------------------------------------------------
+       Mitigated risks
+
+       Both English and old Swedish values are accepted.
+       ----------------------------------------------------- */
 
     const mitigatedRiskCount =
         risks.filter(
@@ -1165,7 +1583,10 @@ function updateDashboard() {
 
                 return (
                     risk.status ===
-                    "Hanterad"
+                        "Mitigated" ||
+
+                    risk.status ===
+                        "Hanterad"
                 );
             }
         ).length;
@@ -1176,9 +1597,9 @@ function updateDashboard() {
 }
 
 
-/* =========================
-   21. FILTER EVENT
-   ========================= */
+/* =========================================================
+   26. FILTER EVENT
+   ========================================================= */
 
 riskFilter.addEventListener(
     "change",
@@ -1186,9 +1607,9 @@ riskFilter.addEventListener(
 );
 
 
-/* =========================
-   22. SEARCH EVENT
-   ========================= */
+/* =========================================================
+   27. SEARCH EVENT
+   ========================================================= */
 
 riskSearch.addEventListener(
     "input",
@@ -1196,9 +1617,16 @@ riskSearch.addEventListener(
 );
 
 
-/* =========================
-   23. CSV VALUE
-   ========================= */
+/* =========================================================
+   28. CSV VALUE
+   ========================================================= */
+
+/*
+    Prepare values for CSV export.
+
+    Double quotes inside values are escaped
+    to prevent malformed CSV data.
+*/
 
 function csvValue(value) {
 
@@ -1217,56 +1645,92 @@ function csvValue(value) {
 }
 
 
-/* =========================
-   24. EXPORT CSV
-   ========================= */
+/* =========================================================
+   29. EXPORT CSV
+   ========================================================= */
+
+/*
+    Export the complete risk register as a CSV file.
+*/
 
 exportRisks.addEventListener(
     "click",
     function () {
 
+
+        /* -------------------------------------------------
+           Prevent export if no risks exist
+           ------------------------------------------------- */
+
         if (risks.length === 0) {
 
             window.alert(
-                "Det finns inga risker att exportera."
+                "There are no risks to export."
             );
 
             return;
         }
 
 
+
+        /* -------------------------------------------------
+           CSV column headers
+           ------------------------------------------------- */
+
         const headers = [
 
             "ID",
-            "Tillgång",
-            "Kategori",
-            "Hot",
-            "Sårbarhet",
-            "Riskbeskrivning",
+
+            "Asset",
+
+            "Category",
+
+            "Threat",
+
+            "Vulnerability",
+
+            "Risk Description",
 
             "Confidentiality",
+
             "Integrity",
+
             "Availability",
 
-            "Sannolikhet",
-            "Konsekvens",
-            "Riskpoäng",
-            "Risknivå",
+            "Likelihood",
 
-            "Riskbehandling",
+            "Impact",
+
+            "Risk Score",
+
+            "Risk Level",
+
+            "Risk Treatment",
+
             "Status",
-            "Riskägare",
-            "Måldatum",
-            "Säkerhetsåtgärder",
 
-            "Kvarvarande sannolikhet",
-            "Kvarvarande konsekvens",
-            "Kvarvarande riskpoäng",
-            "Kvarvarande risknivå",
+            "Risk Owner",
 
-            "Anteckningar"
+            "Target Date",
+
+            "Security Controls",
+
+            "Residual Likelihood",
+
+            "Residual Impact",
+
+            "Residual Risk Score",
+
+            "Residual Risk Level",
+
+            "Notes"
         ];
 
+
+
+        /* -------------------------------------------------
+           Create CSV rows
+           ------------------------------------------------- */
 
         const rows =
             risks.map(
@@ -1275,38 +1739,61 @@ exportRisks.addEventListener(
                     return [
 
                         risk.id,
+
                         risk.asset,
+
                         risk.category,
+
                         risk.threat,
+
                         risk.vulnerability,
+
                         risk.description,
 
                         risk.confidentiality,
+
                         risk.integrity,
+
                         risk.availability,
 
                         risk.likelihood,
+
                         risk.impact,
+
                         risk.score,
+
                         risk.level,
 
                         risk.treatment,
-                        risk.status,
+
+                        getEnglishStatus(
+                            risk.status
+                        ),
+
                         risk.owner,
+
                         risk.deadline,
+
                         risk.controls,
 
                         risk.residualLikelihood,
+
                         risk.residualImpact,
+
                         risk.residualScore,
+
                         risk.residualLevel,
 
                         risk.notes
-
                     ];
                 }
             );
 
+
+
+        /* -------------------------------------------------
+           Build CSV content
+           ------------------------------------------------- */
 
         const csvLines = [];
 
@@ -1330,16 +1817,21 @@ exportRisks.addEventListener(
         );
 
 
+
         /*
-            BOM improves compatibility
-            with Excel and Swedish
-            characters such as å, ä, ö.
+            UTF-8 BOM improves compatibility
+            when opening the CSV file in Excel.
         */
 
         const csvContent =
             "\uFEFF" +
             csvLines.join("\r\n");
 
+
+
+        /* -------------------------------------------------
+           Create downloadable CSV file
+           ------------------------------------------------- */
 
         const blob =
             new Blob(
@@ -1362,6 +1854,7 @@ exportRisks.addEventListener(
         downloadLink.href =
             url;
 
+
         downloadLink.download =
             "security-risk-register.csv";
 
@@ -1382,10 +1875,21 @@ exportRisks.addEventListener(
 );
 
 
-/* =========================
-   25. INITIALIZE APPLICATION
-   ========================= */
+/* =========================================================
+   30. INITIALIZE APPLICATION
+   ========================================================= */
+
+/*
+    Calculate the initial risk values
+    when the page loads.
+*/
 
 updateRiskCalculations();
+
+
+/*
+    Render saved risks and dashboard statistics
+    when the page loads.
+*/
 
 renderRisks();

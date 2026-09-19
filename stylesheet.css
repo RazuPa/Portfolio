@@ -70,79 +70,28 @@ header {
 
 
 /* ==================================================
-   03. INTRODUCTION
-   Name, title, description and background image
+   03. INTRODUCTION BANNER
    ================================================== */
 
 .introduction {
-    position: relative;
-    min-height: 600px;
-
-    background:
-        linear-gradient(
-            rgba(5, 15, 30, 0.35),
-            rgba(5, 15, 30, 0.65)
-        ),
-        url("./images/Background.png");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    display: flex;
-    align-items: center;
-}
-
-.introduction-content {
     width: 100%;
-    max-width: 1200px;
-
-    margin: auto;
-    padding: 100px 30px;
+    background: #0b0f19;
 }
 
-.introduction-label {
-    color: #38bdf8;
-    font-weight: bold;
-    margin-bottom: 10px;
+.introduction img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
-
-.introduction h1 {
-    font-size: clamp(50px, 8vw, 90px);
-    line-height: 1;
-
-    margin-bottom: 15px;
-
-    color: white;
-}
-
-.introduction h2 {
-    font-size: clamp(25px, 4vw, 45px);
-
-    color: #94a3b8;
-
-    margin-bottom: 25px;
-}
-
-.introduction p {
-    max-width: 650px;
-
-    font-size: 18px;
-
-    color: #cbd5e1;
-}
-
-.introduction-buttons {
-    display: flex;
-    gap: 15px;
-
-    margin-top: 35px;
-}
-
 
 /* ==================================================
    04. BUTTONS
    ================================================== */
+
+   #about .introduction-buttons {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
 
 .button {
     display: inline-block;
@@ -187,19 +136,18 @@ header {
    05. PAGE SECTIONS
    ================================================== */
 
-.page-section {
-    max-width: 1200px;
 
+.page-section {
+
+    max-width: 1200px;
     margin: auto;
-    padding: 100px 30px;
+    padding: 65px 30px;
 }
 
 .page-section > h2 {
-    font-size: 36px;
-
+    font-size: 34px;
     color: white;
-
-    margin-bottom: 35px;
+    margin-bottom: 25px;
 }
 
 .page-section > h2::after {
@@ -239,12 +187,15 @@ header {
 }
 
 .section-description {
+
     max-width: 700px;
 
     color: #94a3b8;
 
-    margin-top: -20px;
-    margin-bottom: 40px;
+    margin-top: -15px;
+
+    margin-bottom: 30px;
+
 }
 
 
@@ -267,8 +218,7 @@ header {
 
 .skill-card {
     width: 280px;
-
-    padding: 18px;
+    padding: 15px;
 
     background: #111827;
 
@@ -363,18 +313,23 @@ header {
 }
 
 .project-card {
-    min-height: 260px;
 
-    padding: 30px;
+    min-height: 220px;
+
+    padding: 24px;
 
     background: #111827;
 
     border: 1px solid #1f2937;
+
     border-radius: 12px;
 
     transition:
+
         transform 0.25s,
+
         border-color 0.25s;
+
 }
 
 .project-card:hover {

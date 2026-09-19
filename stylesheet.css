@@ -258,7 +258,7 @@ header {
     display: grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(3, 1fr);
 
     gap: 25px;
 }
@@ -825,7 +825,7 @@ footer {
 .skills-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, 280px);
+    grid-template-columns: repeat(4, 280px);
 
     gap: 18px;
 

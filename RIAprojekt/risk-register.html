@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Security Risk Register - ett interaktivt verktyg för att identifiera, bedöma, behandla och följa IT-säkerhetsrisker."
+    >
+
+    <title>Security Risk Register | Razmus Pålsson</title>
+
+    <link rel="stylesheet" href="risk-register.css">
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="header">
+
+        <nav class="navbar">
+
+            <a
+                href="../index.html"
+                class="logo"
+                aria-label="Tillbaka till portfolio"
+            >
+                RP
+            </a>
+
+
+            <div class="nav-links">
+
+                <a href="#dashboard">
+                    Dashboard
+                </a>
+
+                <a href="#risk-register">
+                    Riskregister
+                </a>
+
+                <a href="#new-risk">
+                    Ny risk
+                </a>
+
+                <a href="#about-project">
+                    Om projektet
+                </a>
+
+                <a
+                    href="../index.html"
+                    class="portfolio-link"
+                >
+                    ← Portfolio
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             HERO
+             ================================================= -->
+hur 
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="section-label">
+                    CYBERSECURITY PROJECT
+                </p>
+
+
+                <h1>
+                    Security Risk Register
+                </h1>
+
+
+                <p class="hero-description">
+                    Ett interaktivt verktyg för att identifiera,
+                    dokumentera, bedöma, behandla och följa
+                    IT-säkerhetsrisker.
+                </p>
+
+
+                <div class="project-tags">
+
+                    <span>Risk Management</span>
+                    <span>Cybersecurity</span>
+                    <span>CIA Triad</span>
+                    <span>JavaScript</span>
+                    <span>HTML</span>
+                    <span>CSS</span>
+
+                </div>
+
+
+                <div class="hero-actions">
+
+                    <a
+                        href="#new-risk"
+                        class="primary-button"
+                    >
+                        + Skapa risk
+                    </a>
+
+                    <a
+                        href="#risk-register"
+                        class="secondary-button"
+                    >
+                        Visa riskregister
+                    </a>
+
+                </div>
+
+
+                <div class="hero-info">
+
+                    <span>
+                        ● LOKAL APPLIKATION
+                    </span>
+
+                    <span>
+                        Data lagras lokalt i webbläsaren
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             DASHBOARD
+             ================================================= -->
+
+        <section
+            class="section"
+            id="dashboard"
+        >
+
+            <div class="section-header">
+
+                <div>
+
+                    <p class="section-label">
+                        DASHBOARD
+                    </p>
+
+                    <h2>
+                        Risköversikt
+                    </h2>
+
+                    <p class="section-description">
+                        Sammanfattning av registrerade
+                        IT-säkerhetsrisker.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="#new-risk"
+                    class="primary-button"
+                >
+                    + Ny risk
+                </a>
+
+            </div>
+
+
+
+            <!-- DASHBOARD CARDS -->
+
+            <div class="dashboard-grid">
+
+
+                <article class="dashboard-card">
+
+                    <span class="dashboard-label">
+                        TOTALA RISKER
+                    </span>
+
+                    <strong id="totalRisks">
+                        0
+                    </strong>
+
+                    <p>
+                        Registrerade risker
+                    </p>
+
+                </article>
+
+
+
+                <article class="dashboard-card">
+
+                    <span class="dashboard-label">
+                        HÖGA / KRITISKA
+                    </span>
+
+                    <strong id="highRisks">
+                        0
+                    </strong>
+
+                    <p>
+                        Risker som kräver prioritering
+                    </p>
+
+                </article>
+
+
+
+                <article class="dashboard-card">
+
+                    <span class="dashboard-label">
+                        UNDER ÅTGÄRD
+                    </span>
+
+                    <strong id="activeRisks">
+                        0
+                    </strong>
+
+                    <p>
+                        Pågående riskbehandling
+                    </p>
+
+                </article>
+
+
+
+                <article class="dashboard-card">
+
+                    <span class="dashboard-label">
+                        HANTERADE
+                    </span>
+
+                    <strong id="mitigatedRisks">
+                        0
+                    </strong>
+
+                    <p>
+                        Hanterade risker
+                    </p>
+
+                </article>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RISK MATRIX
+                 ================================================= -->
+
+            <div class="dashboard-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <p class="section-label">
+                            RISK MATRIX
+                        </p>
+
+                        <h3>
+                            Riskmatris
+                        </h3>
+
+                    </div>
+
+
+                    <p>
+                        Sannolikhet × konsekvens
+                    </p>
+
+                </div>
+
+
+                <div class="risk-matrix-container">
+
+                    <div class="risk-matrix">
+
+
+                        <!-- ROW 5 -->
+
+                        <div class="matrix-label">
+                            5
+                        </div>
+
+                        <div
+                            class="matrix-cell medium"
+                            data-score="5"
+                        >
+                            5
+                        </div>
+
+                        <div
+                            class="matrix-cell medium"
+                            data-score="10"
+                        >
+                            10
+                        </div>
+
+                        <div
+                            class="matrix-cell high"
+                            data-score="15"
+                        >
+                            15
+                        </div>
+
+                        <div
+                            class="matrix-cell critical"
+                            data-score="20"
+                        >
+                            20
+                        </div>
+
+                        <div
+                            class="matrix-cell critical"
+                            data-score="25"
+                        >
+                            25
+                        </div>
+
+
+
+                        <!-- ROW 4 -->
+
+                        <div class="matrix-label">
+                            4
+                        </div>
+
+                        <div
+                            class="matrix-cell low"
+                            data-score="4"
+                        >
+                            4
+                        </div>
+
+                        <div
+                            class="matrix-cell medium"
+                            data-score="8"
+                        >
+                            8
+                        </div>
+
+                        <div
+                            class="matrix-cell high"
+                            data-score="12"
+                        >
+                            12
+                        </div>
+
+                        <div
+                            class="matrix-cell high"
+                            data-score="16"
+                        >
+                            16
+                        </div>
+
+                        <div
+                            class="matrix-cell critical"
+                            data-score="20"
+                        >
+                            20
+                        </div>
+
+
+
+                        <!-- ROW 3 -->
+
+                        <div class="matrix-label">
+                            3
+                        </div>
+
+                        <div
+                            class="matrix-cell low"
+                            data-score="3"
+                        >
+                            3
+                        </div>
+
+                        <div
+                            class="matrix-cell medium"
+                            data-score="6"
+                        >
+                            6
+                        </div>
+
+                        <div
+                            class="matrix-cell medium"
+                            data-score="9"
+                        >
+                            9
+                        </div>
+
+                        <div
+                            class="matrix-cell high"
+                            data-score="12"
+                        >
+                            12
+                        </div>
+
+                        <div
+                            class="matrix-cell high"
+                            data-score="15"
+                        >
+                            15
+                        </div>
+
+
+
+                        <!-- ROW 2 -->
+
+                        <div class="matrix-label">
+                            2
+                        </div>
+
+                        <div
+                            class="matrix-cell low"
+                            data-score="2"
+                        >
+                            2
+                        </div>
+
+                        <div
+                            class="matrix-cell low"
+                            data-score="4"
+                        >
+                            4
+                        </div>
+
+                        <div
+                            class="matrix-cell medium"
+                            data-score="6"
+                        >
+                            6
+                        </div>
+
+                        <div
+                            class="matrix-cell medium"
+                            data-score="8"
+                        >
+                            8
+                        </div>
+
+                        <div
+                            class="matrix-cell medium"
+                            data-score="10"
+                        >
+                            10
+                        </div>
+
+
+
+                        <!-- ROW 1 -->
+
+                        <div class="matrix-label">
+                            1
+                        </div>
+
+                        <div
+                            class="matrix-cell low"
+                            data-score="1"
+                        >
+                            1
+                        </div>
+
+                        <div
+                            class="matrix-cell low"
+                            data-score="2"
+                        >
+                            2
+                        </div>
+
+                        <div
+                            class="matrix-cell low"
+                            data-score="3"
+                        >
+                            3
+                        </div>
+
+                        <div
+                            class="matrix-cell low"
+                            data-score="4"
+                        >
+                            4
+                        </div>
+
+                        <div
+                            class="matrix-cell medium"
+                            data-score="5"
+                        >
+                            5
+                        </div>
+
+
+
+                        <!-- X AXIS -->
+
+                        <div class="matrix-empty"></div>
+
+                        <div class="matrix-label">
+                            1
+                        </div>
+
+                        <div class="matrix-label">
+                            2
+                        </div>
+
+                        <div class="matrix-label">
+                            3
+                        </div>
+
+                        <div class="matrix-label">
+                            4
+                        </div>
+
+                        <div class="matrix-label">
+                            5
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="matrix-axis">
+
+                        <span>
+                            ↑ Sannolikhet
+                        </span>
+
+                        <span>
+                            Konsekvens →
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RISK LEVEL LEGEND -->
+
+                <div class="risk-legend">
+
+                    <span class="legend-item low">
+                        Låg
+                    </span>
+
+                    <span class="legend-item medium">
+                        Medel
+                    </span>
+
+                    <span class="legend-item high">
+                        Hög
+                    </span>
+
+                    <span class="legend-item critical">
+                        Kritisk
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RISK REGISTER
+             ================================================= -->
+
+        <section
+            class="section"
+            id="risk-register"
+        >
+
+            <div class="section-header">
+
+                <div>
+
+                    <p class="section-label">
+                        RISK REGISTER
+                    </p>
+
+                    <h2>
+                        Registrerade risker
+                    </h2>
+
+                    <p class="section-description">
+                        Översikt över identifierade risker,
+                        risknivåer, riskägare och aktuell status.
+                    </p>
+
+                </div>
+
+
+
+                <div class="register-actions">
+
+
+                    <!-- SEARCH -->
+
+                    <label
+                        for="riskSearch"
+                        class="visually-hidden"
+                    >
+                        Sök risk
+                    </label>
+
+                    <input
+                        type="search"
+                        id="riskSearch"
+                        placeholder="Sök risk..."
+                    >
+
+
+
+                    <!-- FILTER -->
+
+                    <label
+                        for="riskFilter"
+                        class="visually-hidden"
+                    >
+                        Filtrera risknivå
+                    </label>
+
+                    <select id="riskFilter">
+
+                        <option value="all">
+                            Alla risknivåer
+                        </option>
+
+                        <option value="critical">
+                            Kritisk
+                        </option>
+
+                        <option value="high">
+                            Hög
+                        </option>
+
+                        <option value="medium">
+                            Medel
+                        </option>
+
+                        <option value="low">
+                            Låg
+                        </option>
+
+                    </select>
+
+
+
+                    <!-- EXPORT -->
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="exportRisks"
+                    >
+                        Exportera CSV
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RISK TABLE -->
+
+            <div
+                class="table-wrapper"
+                id="tableWrapper"
+                hidden
+            >
+
+                <table class="risk-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ID
+                            </th>
+
+                            <th>
+                                Tillgång
+                            </th>
+
+                            <th>
+                                Hot
+                            </th>
+
+                            <th>
+                                Risk
+                            </th>
+
+                            <th>
+                                Risknivå
+                            </th>
+
+                            <th>
+                                Riskägare
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Kvarvarande
+                            </th>
+
+                            <th>
+                                Hantera
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="riskTableBody">
+
+                        <!-- Risker läggs in med JavaScript -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+
+            <!-- EMPTY STATE -->
+
+            <div
+                class="empty-state"
+                id="emptyState"
+            >
+
+                <div class="empty-icon">
+                    +
+                </div>
+
+                <h3>
+                    Inga risker registrerade
+                </h3>
+
+                <p>
+                    Skapa din första riskbedömning för att
+                    börja bygga riskregistret.
+                </p>
+
+                <a
+                    href="#new-risk"
+                    class="primary-button"
+                >
+                    Skapa första risken
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             NEW RISK
+             ================================================= -->
+
+        <section
+            class="section"
+            id="new-risk"
+        >
+
+            <div class="form-container">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <p class="section-label">
+                            RISK ASSESSMENT
+                        </p>
+
+                        <h2 id="formTitle">
+                            Ny riskbedömning
+                        </h2>
+
+                        <p class="section-description">
+                            Identifiera tillgång, hot och sårbarhet.
+                            Bedöm därefter risken och dokumentera
+                            hur den ska behandlas.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <form id="riskForm">
+
+
+                    <!-- Hidden field used when editing -->
+
+                    <input
+                        type="hidden"
+                        id="editingRiskId"
+                        value=""
+                    >
+
+
+
+                    <!-- =====================================
+                         01 IDENTIFICATION
+                         ===================================== -->
+
+                    <fieldset>
+
+                        <legend>
+                            01 — Identifiering
+                        </legend>
+
+
+                        <div class="form-grid">
+
+
+                            <!-- ASSET -->
+
+                            <div class="form-group">
+
+                                <label for="asset">
+                                    Tillgång
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="asset"
+                                    name="asset"
+                                    placeholder="Ex. Kunddatabas"
+                                    required
+                                >
+
+                                <small>
+                                    System, information eller annan
+                                    resurs som behöver skyddas.
+                                </small>
+
+                            </div>
+
+
+
+                            <!-- CATEGORY -->
+
+                            <div class="form-group">
+
+                                <label for="category">
+                                    Kategori
+                                </label>
+
+                                <select
+                                    id="category"
+                                    name="category"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Välj kategori
+                                    </option>
+
+                                    <option value="Data">
+                                        Data
+                                    </option>
+
+                                    <option value="System">
+                                        System
+                                    </option>
+
+                                    <option value="Nätverk">
+                                        Nätverk
+                                    </option>
+
+                                    <option value="Personal">
+                                        Personal
+                                    </option>
+
+                                    <option value="Fysisk tillgång">
+                                        Fysisk tillgång
+                                    </option>
+
+                                    <option value="Tredjepart">
+                                        Tredjepart
+                                    </option>
+
+                                    <option value="Annan">
+                                        Annan
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- THREAT -->
+
+                            <div class="form-group">
+
+                                <label for="threat">
+                                    Hot
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="threat"
+                                    name="threat"
+                                    placeholder="Ex. Obehörig åtkomst"
+                                    required
+                                >
+
+                                <small>
+                                    Händelse eller aktör som kan orsaka skada.
+                                </small>
+
+                            </div>
+
+
+
+                            <!-- VULNERABILITY -->
+
+                            <div class="form-group">
+
+                                <label for="vulnerability">
+                                    Sårbarhet
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="vulnerability"
+                                    name="vulnerability"
+                                    placeholder="Ex. Svag autentisering"
+                                    required
+                                >
+
+                                <small>
+                                    Svaghet som hotet kan utnyttja.
+                                </small>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- DESCRIPTION -->
+
+                        <div class="form-group full-width">
+
+                            <label for="description">
+                                Riskbeskrivning
+                            </label>
+
+                            <textarea
+                                id="description"
+                                name="description"
+                                rows="4"
+                                placeholder="Beskriv riskscenariot och möjliga konsekvenser..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+                    </fieldset>
+
+
+
+                    <!-- =====================================
+                         02 CIA
+                         ===================================== -->
+
+                    <fieldset>
+
+                        <legend>
+                            02 — CIA-påverkan
+                        </legend>
+
+
+                        <p class="form-help">
+                            Bedöm hur allvarlig påverkan kan bli
+                            på konfidentialitet, riktighet och
+                            tillgänglighet.
+                        </p>
+
+
+                        <div class="cia-input-grid">
+
+
+                            <!-- CONFIDENTIALITY -->
+
+                            <div class="form-group">
+
+                                <label for="confidentiality">
+                                    Confidentiality
+                                </label>
+
+                                <span class="input-description">
+                                    Konfidentialitet
+                                </span>
+
+                                <select
+                                    id="confidentiality"
+                                    name="confidentiality"
+                                >
+
+                                    <option value="1">
+                                        1 — Mycket låg
+                                    </option>
+
+                                    <option value="2">
+                                        2 — Låg
+                                    </option>
+
+                                    <option
+                                        value="3"
+                                        selected
+                                    >
+                                        3 — Medel
+                                    </option>
+
+                                    <option value="4">
+                                        4 — Hög
+                                    </option>
+
+                                    <option value="5">
+                                        5 — Kritisk
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- INTEGRITY -->
+
+                            <div class="form-group">
+
+                                <label for="integrity">
+                                    Integrity
+                                </label>
+
+                                <span class="input-description">
+                                    Riktighet / integritet
+                                </span>
+
+                                <select
+                                    id="integrity"
+                                    name="integrity"
+                                >
+
+                                    <option value="1">
+                                        1 — Mycket låg
+                                    </option>
+
+                                    <option value="2">
+                                        2 — Låg
+                                    </option>
+
+                                    <option
+                                        value="3"
+                                        selected
+                                    >
+                                        3 — Medel
+                                    </option>
+
+                                    <option value="4">
+                                        4 — Hög
+                                    </option>
+
+                                    <option value="5">
+                                        5 — Kritisk
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- AVAILABILITY -->
+
+                            <div class="form-group">
+
+                                <label for="availability">
+                                    Availability
+                                </label>
+
+                                <span class="input-description">
+                                    Tillgänglighet
+                                </span>
+
+                                <select
+                                    id="availability"
+                                    name="availability"
+                                >
+
+                                    <option value="1">
+                                        1 — Mycket låg
+                                    </option>
+
+                                    <option value="2">
+                                        2 — Låg
+                                    </option>
+
+                                    <option
+                                        value="3"
+                                        selected
+                                    >
+                                        3 — Medel
+                                    </option>
+
+                                    <option value="4">
+                                        4 — Hög
+                                    </option>
+
+                                    <option value="5">
+                                        5 — Kritisk
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                        </div>
+
+                    </fieldset>
+
+
+
+                    <!-- =====================================
+                         03 INHERENT RISK
+                         ===================================== -->
+
+                    <fieldset>
+
+                        <legend>
+                            03 — Inneboende risk
+                        </legend>
+
+
+                        <p class="form-help">
+                            Bedöm risken innan de planerade
+                            säkerhetsåtgärderna har införts.
+                        </p>
+
+
+                        <div class="risk-input-grid">
+
+
+                            <!-- LIKELIHOOD -->
+
+                            <div class="form-group">
+
+                                <label for="likelihood">
+                                    Sannolikhet
+                                </label>
+
+                                <select
+                                    id="likelihood"
+                                    name="likelihood"
+                                    required
+                                >
+
+                                    <option value="1">
+                                        1 — Mycket låg
+                                    </option>
+
+                                    <option value="2">
+                                        2 — Låg
+                                    </option>
+
+                                    <option
+                                        value="3"
+                                        selected
+                                    >
+                                        3 — Medel
+                                    </option>
+
+                                    <option value="4">
+                                        4 — Hög
+                                    </option>
+
+                                    <option value="5">
+                                        5 — Mycket hög
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="operator">
+                                ×
+                            </div>
+
+
+
+                            <!-- IMPACT -->
+
+                            <div class="form-group">
+
+                                <label for="impact">
+                                    Konsekvens
+                                </label>
+
+                                <select
+                                    id="impact"
+                                    name="impact"
+                                    required
+                                >
+
+                                    <option value="1">
+                                        1 — Mycket låg
+                                    </option>
+
+                                    <option value="2">
+                                        2 — Låg
+                                    </option>
+
+                                    <option
+                                        value="3"
+                                        selected
+                                    >
+                                        3 — Medel
+                                    </option>
+
+                                    <option value="4">
+                                        4 — Hög
+                                    </option>
+
+                                    <option value="5">
+                                        5 — Kritisk
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="operator">
+                                =
+                            </div>
+
+
+
+                            <!-- SCORE -->
+
+                            <div class="calculated-risk">
+
+                                <span>
+                                    RISK
+                                </span>
+
+                                <strong id="inherentRiskScore">
+                                    9
+                                </strong>
+
+                                <small>
+                                    /25
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- RESULT -->
+
+                        <div
+                            class="risk-result medium"
+                            id="inherentRiskResult"
+                        >
+
+                            <span>
+                                RISKNIVÅ
+                            </span>
+
+                            <strong id="inherentRiskLevel">
+                                MEDEL
+                            </strong>
+
+                        </div>
+
+                    </fieldset>
+
+
+
+                    <!-- =====================================
+                         04 RISK TREATMENT
+                         ===================================== -->
+
+                    <fieldset>
+
+                        <legend>
+                            04 — Riskbehandling
+                        </legend>
+
+
+                        <p class="form-help">
+                            Dokumentera hur risken ska hanteras,
+                            vem som ansvarar för den och vilka
+                            säkerhetsåtgärder som planeras.
+                        </p>
+
+
+                        <div class="form-grid">
+
+
+                            <!-- TREATMENT -->
+
+                            <div class="form-group">
+
+                                <label for="treatment">
+                                    Riskbehandling
+                                </label>
+
+                                <select
+                                    id="treatment"
+                                    name="treatment"
+                                    required
+                                >
+
+                                    <option value="Minska">
+                                        Minska
+                                    </option>
+
+                                    <option value="Undvika">
+                                        Undvika
+                                    </option>
+
+                                    <option value="Överföra">
+                                        Överföra
+                                    </option>
+
+                                    <option value="Acceptera">
+                                        Acceptera
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- STATUS -->
+
+                            <div class="form-group">
+
+                                <label for="status">
+                                    Status
+                                </label>
+
+                                <select
+                                    id="status"
+                                    name="status"
+                                    required
+                                >
+
+                                    <option value="Öppen">
+                                        Öppen
+                                    </option>
+
+                                    <option value="Under åtgärd">
+                                        Under åtgärd
+                                    </option>
+
+                                    <option value="Hanterad">
+                                        Hanterad
+                                    </option>
+
+                                    <option value="Accepterad">
+                                        Accepterad
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- OWNER -->
+
+                            <div class="form-group">
+
+                                <label for="owner">
+                                    Riskägare
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="owner"
+                                    name="owner"
+                                    placeholder="Ex. IT-chef"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- DEADLINE -->
+
+                            <div class="form-group">
+
+                                <label for="deadline">
+                                    Måldatum
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="deadline"
+                                    name="deadline"
+                                >
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- CONTROLS -->
+
+                        <div class="form-group full-width">
+
+                            <label for="controls">
+                                Säkerhetsåtgärder
+                            </label>
+
+                            <textarea
+                                id="controls"
+                                name="controls"
+                                rows="4"
+                                placeholder="Ex. Inför MFA, least privilege, loggning och övervakning..."
+                                required
+                            ></textarea>
+
+                            <small>
+                                Beskriv de åtgärder som ska minska
+                                sannolikheten eller konsekvensen.
+                            </small>
+
+                        </div>
+
+                    </fieldset>
+
+
+
+                    <!-- =====================================
+                         05 RESIDUAL RISK
+                         ===================================== -->
+
+                    <fieldset>
+
+                        <legend>
+                            05 — Kvarvarande risk
+                        </legend>
+
+
+                        <p class="form-help">
+                            Bedöm den förväntade risknivån efter
+                            att de planerade säkerhetsåtgärderna
+                            har införts.
+                        </p>
+
+
+                        <div class="risk-input-grid">
+
+
+                            <!-- RESIDUAL LIKELIHOOD -->
+
+                            <div class="form-group">
+
+                                <label for="residualLikelihood">
+                                    Sannolikhet
+                                </label>
+
+                                <select
+                                    id="residualLikelihood"
+                                    name="residualLikelihood"
+                                    required
+                                >
+
+                                    <option value="1">
+                                        1 — Mycket låg
+                                    </option>
+
+                                    <option
+                                        value="2"
+                                        selected
+                                    >
+                                        2 — Låg
+                                    </option>
+
+                                    <option value="3">
+                                        3 — Medel
+                                    </option>
+
+                                    <option value="4">
+                                        4 — Hög
+                                    </option>
+
+                                    <option value="5">
+                                        5 — Mycket hög
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="operator">
+                                ×
+                            </div>
+
+
+
+                            <!-- RESIDUAL IMPACT -->
+
+                            <div class="form-group">
+
+                                <label for="residualImpact">
+                                    Konsekvens
+                                </label>
+
+                                <select
+                                    id="residualImpact"
+                                    name="residualImpact"
+                                    required
+                                >
+
+                                    <option value="1">
+                                        1 — Mycket låg
+                                    </option>
+
+                                    <option value="2">
+                                        2 — Låg
+                                    </option>
+
+                                    <option
+                                        value="3"
+                                        selected
+                                    >
+                                        3 — Medel
+                                    </option>
+
+                                    <option value="4">
+                                        4 — Hög
+                                    </option>
+
+                                    <option value="5">
+                                        5 — Kritisk
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="operator">
+                                =
+                            </div>
+
+
+
+                            <!-- RESIDUAL SCORE -->
+
+                            <div class="calculated-risk">
+
+                                <span>
+                                    RISK
+                                </span>
+
+                                <strong id="residualRiskScore">
+                                    6
+                                </strong>
+
+                                <small>
+                                    /25
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- RESIDUAL RESULT -->
+
+                        <div
+                            class="risk-result medium"
+                            id="residualRiskResult"
+                        >
+
+                            <span>
+                                KVARVARANDE RISKNIVÅ
+                            </span>
+
+                            <strong id="residualRiskLevel">
+                                MEDEL
+                            </strong>
+
+                        </div>
+
+                    </fieldset>
+
+
+
+                    <!-- =====================================
+                         NOTES
+                         ===================================== -->
+
+                    <fieldset>
+
+                        <legend>
+                            06 — Anteckningar
+                        </legend>
+
+
+                        <div class="form-group">
+
+                            <label for="notes">
+                                Kommentar / uppföljning
+                            </label>
+
+                            <textarea
+                                id="notes"
+                                name="notes"
+                                rows="4"
+                                placeholder="Övrig information, uppföljning eller beslut..."
+                            ></textarea>
+
+                        </div>
+
+                    </fieldset>
+
+
+
+                    <!-- =====================================
+                         FORM ACTIONS
+                         ===================================== -->
+
+                    <div class="form-actions">
+
+
+                        <button
+                            type="reset"
+                            class="secondary-button"
+                            id="resetRisk"
+                        >
+                            Rensa
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="cancelEdit"
+                            hidden
+                        >
+                            Avbryt redigering
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                            id="saveRisk"
+                        >
+                            Spara risk →
+                        </button>
+
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ABOUT PROJECT
+             ================================================= -->
+
+        <section
+            class="section"
+            id="about-project"
+        >
+
+            <p class="section-label">
+                OM PROJEKTET
+            </p>
+
+
+            <h2>
+                Från säkerhetskoncept till fungerande verktyg
+            </h2>
+
+
+            <p class="section-description about-description">
+                Security Risk Register är ett portfolio- och
+                utbildningsprojekt där grundläggande principer
+                inom IT-riskhantering omsätts i ett fungerande
+                webbaserat arbetsflöde.
+            </p>
+
+
+
+            <div class="about-grid">
+
+
+                <article class="about-card">
+
+                    <span class="card-number">
+                        01
+                    </span>
+
+                    <h3>
+                        Identifiera
+                    </h3>
+
+                    <p>
+                        Dokumentera tillgångar, hot och
+                        sårbarheter som tillsammans kan
+                        skapa ett riskscenario.
+                    </p>
+
+                </article>
+
+
+
+                <article class="about-card">
+
+                    <span class="card-number">
+                        02
+                    </span>
+
+                    <h3>
+                        Bedöma
+                    </h3>
+
+                    <p>
+                        Bedöm sannolikhet, konsekvens och
+                        påverkan på confidentiality,
+                        integrity och availability.
+                    </p>
+
+                </article>
+
+
+
+                <article class="about-card">
+
+                    <span class="card-number">
+                        03
+                    </span>
+
+                    <h3>
+                        Behandla
+                    </h3>
+
+                    <p>
+                        Dokumentera riskbehandling,
+                        säkerhetsåtgärder, riskägare,
+                        status och måldatum.
+                    </p>
+
+                </article>
+
+
+
+                <article class="about-card">
+
+                    <span class="card-number">
+                        04
+                    </span>
+
+                    <h3>
+                        Följa upp
+                    </h3>
+
+                    <p>
+                        Jämför inneboende risk med
+                        kvarvarande risk efter planerade
+                        säkerhetsåtgärder.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+
+
+            <!-- TECHNOLOGY -->
+
+            <div class="technology-box">
+
+                <div>
+
+                    <p class="section-label">
+                        TEKNIK
+                    </p>
+
+                    <h3>
+                        Projektets teknik
+                    </h3>
+
+                </div>
+
+
+                <div class="technology-tags">
+
+                    <span>
+                        HTML5
+                    </span>
+
+                    <span>
+                        CSS
+                    </span>
+
+                    <span>
+                        JavaScript
+                    </span>
+
+                    <span>
+                        LocalStorage
+                    </span>
+
+                    <span>
+                        CSV Export
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PROJECT LIMITATION
+             ================================================= -->
+
+        <section class="section">
+
+            <div class="disclaimer">
+
+                <strong>
+                    Om verktyget
+                </strong>
+
+                <p>
+                    Detta är ett utbildnings- och portfolioverktyg
+                    som demonstrerar ett förenklat arbetsflöde för
+                    IT-riskhantering. Det ersätter inte en
+                    organisations etablerade riskhanteringsmetod,
+                    säkerhetspolicy eller professionella GRC-system.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <p>
+                © 2026 Razmus Pålsson
+            </p>
+
+
+            <p>
+                Security Risk Register
+            </p>
+
+
+            <a href="../index.html">
+                ← Tillbaka till portfolio
+            </a>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT FILE
+         ===================================================== -->
+
+    <script src="risk-register.js"></script>
+
+</body>
+
+</html>
